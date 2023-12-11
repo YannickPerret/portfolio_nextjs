@@ -1,0 +1,11 @@
+.blocs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(246, 25, 25, 0.1);
+}
