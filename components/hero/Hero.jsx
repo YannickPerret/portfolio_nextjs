@@ -37,7 +37,7 @@ export default function Hero() {
           duration: 1,
           scrollTrigger: {
             trigger: heroImageRockRef.current,
-            start: "top center", // Ajustez ces valeurs selon vos besoins
+            start: "top center",
             toggleActions: "play none none none",
           }
         });
@@ -51,7 +51,7 @@ export default function Hero() {
           delay: 1,
           scrollTrigger: {
             trigger: heroImageCloudsRef.current,
-            start: "top center", // Ajustez ces valeurs selon vos besoins
+            start: "top center",
             toggleActions: "play none none none",
           }
         });
@@ -65,7 +65,7 @@ export default function Hero() {
           delay: 2,
           scrollTrigger: {
             trigger: cloudsRef.current,
-            start: "top center", // Ajustez ces valeurs selon vos besoins
+            start: "top center",
             toggleActions: "play none none none",
           }
         });
@@ -79,7 +79,7 @@ export default function Hero() {
           delay: 3,
           scrollTrigger: {
             trigger: starsRef.current,
-            start: "top center", // Ajustez ces valeurs selon vos besoins
+            start: "top center",
             toggleActions: "play none none none",
           }
         });
@@ -93,7 +93,7 @@ export default function Hero() {
           delay: 4,
           scrollTrigger: {
             trigger: heroImageMountainRef.current,
-            start: "top center", // Ajustez ces valeurs selon vos besoins
+            start: "top center",
             toggleActions: "play none none none",
           }
         });
@@ -108,7 +108,7 @@ export default function Hero() {
           scale: 1,
           scrollTrigger: {
             trigger: heroTitleRef.current,
-            start: "top center", // Ajustez ces valeurs selon vos besoins
+            start: "top center",
             toggleActions: "play none none none",
           },
           //ease: "power2.out"
@@ -117,7 +117,7 @@ export default function Hero() {
       gsap.to(".hero__title", {
         scrollTrigger: {
           trigger: ".hero",
-          start: "top top", // Commence quand .hero est en haut de la page
+          start: "top top", // Début quand le haut de .hero est en haut de la page
           end: "bottom top", // Se termine quand le bas de .hero est en haut de la page
           scrub: true,
           toggleActions: "play none none reverse",
