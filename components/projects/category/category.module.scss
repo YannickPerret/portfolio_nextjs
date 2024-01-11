@@ -1,0 +1,50 @@
+.categorySkill {
+    display: flex;
+    flex-direction: row;
+
+    &__list {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        flex-wrap: wrap;
+
+        list-style-type: none;
+    }
+
+    &__item {
+        border-radius: 15px;
+        padding: 10px;
+        color: #fff;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.tag {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    border-radius: 15px;
+    padding: 10px;
+
+
+    &__item {
+        border-radius: 15px;
+        padding: 10px;
+        color: #fff;
+
+        list-style-type: none;
+
+        &.active {
+            // styles pour les tags actifs
+            border: 2px solid blue; // Exemple de style pour les tags actifs
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

@@ -1,7 +1,10 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useRef } from 'react'
 import Skills_item from './skills_item'
 import style from '@styles/skill.module.scss'
 import { BookOpen } from 'lucide-react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 const skillsMap = [
     {
@@ -147,10 +150,34 @@ const skillsMap = [
 ]
 
 export default function Skills() {
+    const skillsRefs = useRef([]);
+
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+
+
+        gsap.fromTo(skillsRefs.current,
+            { opacity: 0, y: 30 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: skillsRefs.current,
+                    start: "top 80%",
+                    end: "bottom top",
+                    toggleActions: "play none none none"
+                }
+            }
+        );
+
+    }, []);
+
+
     return (
-        <section className={style.skills}>
+        <section className={style.skills} ref={skillsRefs}>
             <header className={style.skills__header}>
-                <h3><BookOpen /> Skills</h3>
+                <h2><BookOpen /> Skills</h2>
             </header>
             <div className={style.skills__container}>
                 {skillsMap.map((skill, index) => (

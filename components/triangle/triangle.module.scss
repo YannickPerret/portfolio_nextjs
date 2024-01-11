@@ -1,0 +1,62 @@
+$cols: 10;
+$rows: 6;
+$cells: $cols * $rows;
+$bgcolor: #6223D2;
+$shapeHeight: 230px;
+$shapeWidth: 200px;
+
+.triangles {
+    margin: 0;
+    background-color: $bgcolor;
+    height: 45vh;
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+    margin: 7% 0;
+}
+
+.overlay {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 2;
+    background: radial-gradient(circle, transparent 0%, transparentize($bgcolor, .15) 100%);
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat($cols, $shapeWidth);
+    grid-template-rows: repeat($rows, $shapeHeight);
+    transform: translate(-3%, -4%);
+}
+
+.shape {
+    width: $shapeWidth;
+    height: $shapeHeight;
+    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+
+    @for $i from 1 through $cells {
+        &:nth-child(#{$i}) {
+            @if $i >$cols {
+                transform: translate(-50%, -25%);
+            }
+
+            @if $i >($cols * 2) {
+                transform: translate(0%, -50%);
+            }
+
+            @if $i >($cols * 3) {
+                transform: translate(-50%, -75%);
+            }
+
+            @if $i >($cols * 4) {
+                transform: translate(0%, -100%);
+            }
+
+            @if $i >($cols * 5) {
+                transform: translate(-50%, -125%);
+            }
+        }
+    }
+}
