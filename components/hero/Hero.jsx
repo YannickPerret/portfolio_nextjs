@@ -100,12 +100,11 @@ export default function Hero() {
 
       // Animation pour heroTitle
       gsap.fromTo(heroTitleRef.current,
-        { scale: 0.2, opacity: 0 },
+        { opacity: 0 },
         {
           opacity: 1,
           duration: 1,
           delay: 5,
-          scale: 1,
           scrollTrigger: {
             trigger: heroTitleRef.current,
             start: "top center",
@@ -136,28 +135,9 @@ export default function Hero() {
       observer.observe(heroRef.current);
     }
 
-    const starsObserver = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setShowStars(true); // Afficher les étoiles quand elles sont dans le viewport
-        } else {
-          setShowStars(false); // Masquer les étoiles quand elles ne le sont pas
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (starsRef.current) {
-      starsObserver.observe(starsRef.current);
-    }
-
     return () => {
       if (heroRef.current) {
         observer.unobserve(heroRef.current);
-      }
-
-      if (starsRef.current) {
-        starsObserver.unobserve(starsRef.current);
       }
     }
 
