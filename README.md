@@ -22,7 +22,7 @@ npm run dev
 
 Code pour animation récupérer sur le web : 
 [Source code ](https://codepen.io/robdimarzo/pen/VqjvqR)
-```bash js
+```bash html
  <svg className={style.shape} viewBox="0 0 100 115" preserveAspectRatio="xMidYMin slice">
             <polygon
                 points=""
@@ -40,6 +40,7 @@ Code pour animation récupérer sur le web :
             </polygon>
         </svg>
 ```
+
 
 
 
