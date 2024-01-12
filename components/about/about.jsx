@@ -30,8 +30,8 @@ export default function About() {
   }, []);
 
   return (
-    <section ref={aboutRef} className={aboutStyles.about}>
-      <div className={aboutStyles.about__container}>
+    <section className={aboutStyles.about}>
+      <div className={aboutStyles.about__container} ref={aboutRef}>
         <Blocs>
           <div className={aboutStyles.about__text}>
             <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>

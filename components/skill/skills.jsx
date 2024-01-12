@@ -157,11 +157,11 @@ export default function Skills() {
 
 
         gsap.fromTo(skillsRefs.current,
-            { opacity: 0, y: 30 },
+            { opacity: 0, x: -100 },
             {
                 opacity: 1,
-                y: 0,
-                duration: 1,
+                x: 0, // Se déplace vers sa position originale
+                duration: 2,
                 scrollTrigger: {
                     trigger: skillsRefs.current,
                     start: "top 80%",

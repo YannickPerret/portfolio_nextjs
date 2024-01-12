@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { ArrowBigDown } from 'lucide-react'
+import ProgressBar from '../progressBar/ProgressBar'
 
 export default function Skills_item({ logo, title, description, level, color, keyPoints, style }) {
   return (
@@ -9,16 +10,11 @@ export default function Skills_item({ logo, title, description, level, color, ke
         <h4>{title} <ArrowBigDown /></h4>
       </summary>
       <div className={style.skills__item__description}>
-        <p>
-          {description}
+        {keyPoints.map((keyPoint, index) => {
+          <ProgressBar key={index} value={level} max="100" color={color} />
+        })}
 
-        </p>
-        <ul>
-          {keyPoints.map((keyPoint, index) => (
-            <li key={index}>{keyPoint}</li>
-          ))}
-        </ul>
       </div>
-    </details>
+    </details >
   )
 }

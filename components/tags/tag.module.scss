@@ -1,0 +1,20 @@
+.tags {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    gap: 5px;
+    font-size: .8rem;
+    padding: 3px;
+    list-style-type: none;
+
+    &__item {
+        border-radius: 15px;
+        padding: 10px;
+        color: #fff;
+        height: fit-content;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

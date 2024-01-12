@@ -1,4 +1,4 @@
-import styles from "../page.module.css";
+import styles from "./page.module.css";
 import Hero from "@/components/hero/hero";
 import About from "@/components/about/about";
 import Skills from "@/components/skill/skills";
