@@ -2,7 +2,7 @@
 
 Le projet PortFolio est un projet de fin de formation, il a pour but de mettre en pratique les compétences acquises durant la formation.
 Le projet à été réalisé en 8 semaines à raison de 4heures par semaines. Il utilises les technologies suivantes:
-- NextJS
+- NextJS 13
 - SQlite
 - SCSS
 - GSap
@@ -41,7 +41,8 @@ Code pour animation récupérer sur le web :
         </svg>
 ```
 
-
+Code pour créer un nuage en svg : 
+[Source code ](https://codepen.io/beauhaus/pen/pmMaWV)
 
 
 ## Auteur

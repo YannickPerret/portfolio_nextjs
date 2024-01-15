@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useRef } from 'react'
-import Skills_item from './skills_item'
+import SkillsItem from './skills_item'
 import style from '@styles/skill.module.scss'
 import { BookOpen } from 'lucide-react'
 import { gsap } from 'gsap'
@@ -181,7 +181,7 @@ export default function Skills() {
             </header>
             <div className={style.skills__container}>
                 {skillsMap.map((skill, index) => (
-                    <Skills_item key={index} {...skill} style={style} />
+                    <SkillsItem key={index} {...skill} style={style} />
                 ))}
             </div>
 
