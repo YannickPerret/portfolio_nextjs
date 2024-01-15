@@ -1,0 +1,20 @@
+.moveUp {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 10%;
+    right: 5%;
+    width: 3.5%;
+    height: 4%;
+    border-radius: 45%;
+    opacity: 1;
+    z-index: 100;
+    background-color: rgba(240, 255, 255, 0.074);
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(240, 255, 255, 0.38);
+    }
+}

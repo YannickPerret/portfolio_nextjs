@@ -5,14 +5,19 @@ import Skills from "@/components/skill/skills";
 import Projects from "@/components/projects/projects";
 import Triangle from "@/components/triangle/Triangle";
 import Contact from "@/components/contact/Contact";
+import UpArrow from "@/components/upArrow/UpArrow";
+
 
 export default function Home() {
+  //show upArrow when scroll after 15% of the page
+
   return (
     <>
+      <UpArrow />
+
       <header className={styles.header}>
         <Hero />
       </header>
-
       <main className={styles.main}>
         <About />
 
