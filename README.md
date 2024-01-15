@@ -14,6 +14,8 @@ Le projet à été réalisé en 8 semaines à raison de 4heures par semaines. Il
 Pour installer le projet, il faut cloner le projet sur votre machine, puis lancer la commande suivante:
 ```bash
 npm install
+
+npm run db:create
 ```
 ## Lancement du projet
 Pour lancer le projet, il faut lancer la commande suivante:
