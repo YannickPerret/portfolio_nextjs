@@ -14,7 +14,6 @@ export default function Home() {
   return (
     <>
       <UpArrow />
-
       <header className={styles.header}>
         <Hero />
       </header>
@@ -28,7 +27,6 @@ export default function Home() {
         <Triangle />
 
         <Contact />
-
       </main>
     </>
   );

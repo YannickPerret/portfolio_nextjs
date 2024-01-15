@@ -32,7 +32,6 @@ export default function Skills() {
 
     }, []);
 
-
     return (
         <section className={style.skills} ref={skillsRefs}>
             <header className={style.skills__header}>
