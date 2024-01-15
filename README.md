@@ -8,7 +8,7 @@ Le projet à été réalisé en 8 semaines à raison de 4heures par semaines. Il
 - GSap
 - Gsap with ScrollTrigger
 - Github
-- icone par Lucid-react
+- Icone par Lucid-react
 
 ## Installation
 Pour installer le projet, il faut cloner le projet sur votre machine, puis lancer la commande suivante:

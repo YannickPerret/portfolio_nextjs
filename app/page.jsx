@@ -9,7 +9,6 @@ import UpArrow from "@/components/upArrow/UpArrow";
 
 
 export default function Home() {
-  //show upArrow when scroll after 15% of the page
 
   return (
     <>

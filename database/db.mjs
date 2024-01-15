@@ -1,4 +1,5 @@
 import sqlite3 from "sqlite3";
+import { promisify } from "util";
 import tags from "../dataset/tags.mjs";
 import projects from "../dataset/projects.mjs";
 
@@ -15,10 +16,20 @@ const db = new sqlite3.Database(
     }
 );
 
-// Création des tables
-db.serialize(() => {
-    // Table projects
-    db.run(`
+// Promisify db.run pour utiliser async/await
+const runAsync = promisify(db.run.bind(db));
+
+// Fonction pour créer les tables
+const createTables = async () => {
+    await runAsync(`
+        CREATE TABLE IF NOT EXISTS tags (
+            id INTEGER PRIMARY KEY,
+            name TEXT NOT NULL,
+            color TEXT NOT NULL
+        )
+    `);
+
+    await runAsync(`
         CREATE TABLE IF NOT EXISTS projects (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT NOT NULL,
@@ -30,17 +41,7 @@ db.serialize(() => {
         )
     `);
 
-    // Table tags
-    db.run(`
-        CREATE TABLE IF NOT EXISTS tags (
-            id INTEGER PRIMARY KEY,
-            name TEXT NOT NULL,
-            color TEXT NOT NULL
-        )
-    `);
-
-    // Table de relation project_tags
-    db.run(`
+    await runAsync(`
         CREATE TABLE IF NOT EXISTS project_tags (
             project_id INTEGER NOT NULL,
             tag_id INTEGER NOT NULL,
@@ -48,37 +49,49 @@ db.serialize(() => {
             FOREIGN KEY (tag_id) REFERENCES tags(id)
         )
     `);
+};
 
-    // Insertion des tags
-    tags.forEach(tag => {
-        db.run("INSERT INTO tags (id, name, color) VALUES (?, ?, ?)", [tag.id, tag.name, tag.color]);
-    });
+// Fonction pour insérer les données
+const insertData = async () => {
+    for (const tag of tags) {
+        await runAsync("INSERT INTO tags (id, name, color) VALUES (?, ?, ?)", [tag.id, tag.name, tag.color]);
+    }
 
-    // Insertion des projets et de leurs tags
-    projects.forEach(project => {
-        db.run("INSERT INTO projects (title, description, image, slug, github, liveLink) VALUES (?, ?, ?, ?, ?, ?)",
-            [project.title, project.description, project.image, project.slug, project.github, project.liveLink], function (err) {
-                if (err) {
-                    console.error(err.message);
-                    return;
-                }
-                console.log(`Projet inséré : ${project.title}`);
-
-                // Insertion des relations projet-tag
-                project.tags.forEach(tagId => {
-                    db.run("INSERT INTO project_tags (project_id, tag_id) VALUES (?, ?)", [this.lastID, tagId]);
+    for (const project of projects) {
+        const projectId = await new Promise((resolve, reject) => {
+            db.run("INSERT INTO projects (title, description, image, slug, github, liveLink) VALUES (?, ?, ?, ?, ?, ?)",
+                [project.title, project.description, project.image, project.slug, project.github, project.liveLink
+                ], function (err) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(this.lastID);
+                    }
                 });
-            });
-    });
-});
-
-// Fermeture de la connexion à la base de données
-process.on('exit', () => {
-    db.close((err) => {
-        if (err) {
-            console.error(err.message);
-            return;
+        });
+        for (const tagId of project.tags) {
+            await runAsync("INSERT INTO project_tags (project_id, tag_id) VALUES (?, ?)", [projectId, tagId]);
         }
-        console.log("Connexion à la base de données fermée.");
-    });
-});
+    }
+};
+
+// Exécution principale
+const main = async () => {
+    try {
+        await createTables();
+        await insertData();
+        console.log("Création des tables et insertion des données réussies.");
+    } catch (err) {
+        console.error("Erreur lors de la création des tables ou de l'insertion des données:", err.message);
+    } finally {
+        db.close((err) => {
+            if (err) {
+                console.error("Erreur lors de la fermeture de la base de données:", err.message);
+            } else {
+                console.log("Connexion à la base de données fermée.");
+            }
+        });
+    }
+};
+
+main();
