@@ -2,10 +2,18 @@ import sqlite3 from "sqlite3";
 import { promisify } from "util";
 import tags from "../dataset/tags.mjs";
 import projects from "../dataset/projects.mjs";
+import { fileURLToPath } from "url";
+import path from "path";
+
+// Obtenir le chemin du répertoire courant
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// Construire le chemin de la base de données
+const dbPath = path.join(__dirname, 'portfolio.db');
 
 // Connexion à la base de données SQLite
 const db = new sqlite3.Database(
-    "./portfolio.db",
+    dbPath,
     sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
     (err) => {
         if (err) {
